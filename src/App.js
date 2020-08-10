@@ -1,62 +1,74 @@
-
+import React, { Component } from 'react'
 import Wrapper from "./components/Wrapper";
 import EmployeeCard from "./components/EmployeeCard";
+// import ReactDOM from "react-dom";
 // import API from "./utils/API";
 import "./App.css";
 
-// function App() {
-//   return (
-// <Wrapper>
-//   <h1 className="title">Employees List</h1>
-//   <EmployeeCard
-//     name={employees[0].name}
-//     image={employees[0].image}
-//     occupation={employees[0].occupation}
-//     location={employees[0].location}
-//   />
-//   <EmployeeCard
-//     name={employees[1].name}
-//     image={employees[1].image}
-//     occupation={employees[1].occupation}
-//     location={employees[1].location}
-//   />
-//   <EmployeeCard
-//     name={employees[2].name}
-//     image={employees[2].image}
-//     occupation={employees[2].occupation}
-//     location={employees[2].location}
-//   />
-// </Wrapper>
-//   );
-// }
-
-import React, { Component } from 'react'
-
 class App extends Component {
   state = {
-    employees: EmployeeCard.APIReturnEmployees
+    numInput: 0,
+    users: [EmployeeCard.APIReturnEmployees],
+    filteredUsers: []
   }
 
   handleDelete = idToDelete => {
-   const employeeCopy = [...this.state.employees];
-   const filteredEmployees = employeeCopy.filter(employee=>{
-     if(employee.id!== idToDelete){
+   const employeeCopy = [...this.state.users];
+   const filteredEmployBees = employeeCopy.filter(user=>{
+     if(user.id!== idToDelete){
        return true;
      }else{
        return false;
      }
    })
-   this.setState({employees: filteredEmployees});
+   this.setState({users: filteredEmployBees});
+  }
+
+  renderEmployees = () => {
+    return this.state.filteredUsers.map(user => <EmployeeCard
+      key={user.id.value}
+      img={user.picture.large}
+      name={user.name}
+      phone={user.phone}
+      email={user.email}
+    />);
   }
 
   render() {
+    const isNumberEntered = this.state.numInput === 0
     return (
-      <Wrapper>
-        <h1 className="title">Employees List</h1>
-        {this.state.employees.map((employee)=> <EmployeeCard id={employee.id.value} handleDelete={this.handleDelete} name={employee.name} picture={employee.picture} city={employee.city} state={employee.state} country={employee.country} email={employee.email} />)}
-      </Wrapper>
-    )
+      <div className="App">
+        <h1>Sabre International</h1>
+        <label htmlFor="numInput"># of Employees
+      <input
+            id="numInput"
+            name="numInput"
+            type="number"
+            value={this.state.numInput}
+            min="0"
+            onChange={this.handleInputChange}
+          />
+        </label>
+        <Button  disabledBy={isNumberEntered} onHandleClick={this.makeRequest} title={isNumberEntered ? "Please Enter a Number" : "Submit"}/>
+        <Button onHandleClick={this.filterFemaleEmployees} title={"Female Employees"}/>
+        <Button onHandleClick={this.filterMaleEmployees} title={"Male Employees"}/>
+        <Button onHandleClick={this.sortEmployeesAlphabetical} title={"Alphabetical"}/>
+        <div style={styles.employeeContainer}>
+          {this.renderEmployees()}
+        </div>
+      </div>
+    );
   }
 }
+
+  // render() {
+  //   return (
+  //     <Wrapper>
+  //       <h1 className="title">Employees List</h1>
+  //       {this.state.users.map((user)=> <userCard id={user.id.value} handleDelete={this.handleDelete} name={user.name} picture={user.picture} city={user.city} state={user.state} country={user.country} email={user.email} />)}
+  //     </Wrapper>
+  //   )
+  // }
+
 
 export default App;
