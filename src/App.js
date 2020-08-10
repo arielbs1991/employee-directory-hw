@@ -1,42 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-// import Button from "./components/Button";
-
-// import EmployeeCard from "./components/EmployeeCard";
-
-
-import "./App.css";
-function EmployeeCard({ img, name, phone, email, location }) {
-    return (
-        <div className="card">
-            <div className="img-container">
-                <img alt={name} src={img} />
-            </div>
-            <div className="content">
-                <ul>
-                    <li>
-                        <strong>Name:</strong> {name.title} {name.first} {name.last}
-                    </li>
-                    <li>
-                        <strong>Email:</strong> {email}
-                    </li>
-                    <li>
-                        <strong>Phone Number:</strong> {phone}
-                    </li>
-                    <li>
-                        <strong>Address:</strong> {location.city}, {location.state}, {location.country}
-                    </li>
-                </ul>
-            </div>
-            {/* <span onClick={() => handleDelete(id.value)} className="remove">𝘅</span> */}
-        </div>
-    );
-}
-
-// function Button(props) {
-//     return <button type="submit">{props.title}</button>;
-// }
+import EmployeeCard from "./components/EmployeeCard";
 
 const styles = {
     employeeContainer: {
@@ -106,7 +71,7 @@ class App extends Component {
     }
 
     render() {
-        const isNumberEntered = this.state.numInput === 0
+        
         return (
             <div className="App">
                 <h1>Internal Spy Database</h1>
@@ -121,7 +86,7 @@ class App extends Component {
                         onChange={this.handleInputChange}
                     />
                 </label>
-                <button disabledby={isNumberEntered} onClick={this.makeRequest} title={isNumberEntered ? "Please Enter a Number" : "Submit Number"} value="Submit Number">Submit Number</button>
+                <button onClick={this.makeRequest} title={"Submit Number"} value="Submit Number">Submit Number</button>
                 <button onClick={this.filterFemaleEmployees} title={"Sort by Women"}>Sort by Women</button>
                 <button onClick={this.filterMaleEmployees} title={"Sort by Men"}>Sort by Men</button>
                 <button onClick={this.sortEmployeesAlphebetical} title={"Sort Alphebetically"}>Sort Alphebetically</button>
