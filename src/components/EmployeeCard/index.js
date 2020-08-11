@@ -10,7 +10,7 @@ function EmployeeCard({ img, name, phone, email, location }) {
           <div className="content">
               <ul>
                   <li>
-                      <strong>Name:</strong> {name.title} {name.first} {name.last}
+                      <strong>Name:</strong> {name.first} {name.last}
                   </li>
                   <li>
                       <strong>Email:</strong> {email}
@@ -19,7 +19,7 @@ function EmployeeCard({ img, name, phone, email, location }) {
                       <strong>Phone Number:</strong> {phone}
                   </li>
                   <li>
-                      <strong>Address:</strong> {location.city}, {location.state}, {location.country}
+                      <strong>Location:</strong> {location.state}, {location.country}
                   </li>
               </ul>
           </div>

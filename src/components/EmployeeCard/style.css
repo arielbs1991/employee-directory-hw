@@ -32,16 +32,3 @@
 .card > .content > ul > li {
   margin-top: 18px;
 }
-
-.card > .remove {
-  color: #ff1744;
-  font-size: 48px;
-  position: absolute;
-  top: -20px;
-  right: 5px;
-  cursor: pointer;
-}
-
-.card > .remove:hover {
-  color: #d50000;
-}
