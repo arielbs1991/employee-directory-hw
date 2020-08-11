@@ -13,7 +13,7 @@ const styles = {
 
 class App extends Component {
     state = {
-        numInput: 0,
+        numInput: "",
         users: [],
         filteredUsers: []
     }
@@ -60,6 +60,7 @@ class App extends Component {
         this.setState({ filteredUsers: filteredUsers })
     }
     renderEmployees = () => {
+
         return this.state.filteredUsers.map(user => <EmployeeCard
             key={user.id.value}
             img={user.picture.large}
@@ -71,12 +72,12 @@ class App extends Component {
     }
 
     render() {
-
+        this.numInput = "";
         return (
             <div className="App">
                 <h1>Internal Spy Database</h1>
                 <label htmlFor="numInput">
-                    Number of Spies
+                    Number of Spies: 
                 <input
                         id="numInput"
                         name="numInput"
@@ -90,11 +91,11 @@ class App extends Component {
                 <br />
                 <br />
                 <button onClick={this.sortEmployeesAlphebetical} title={"Sort Alphebetically"}>Sort Alphebetically</button>
-                
+
                 <button onClick={this.filterFemaleEmployees} title={"Sort by Women"}>Sort by Women</button>
-               
+
                 <button onClick={this.filterMaleEmployees} title={"Sort by Men"}>Sort by Men</button>
-                
+
 
                 <div style={styles.employeeContainer}>
                     {this.renderEmployees()}
